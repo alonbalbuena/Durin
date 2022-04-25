@@ -1,0 +1,107 @@
+@charset "ISO-8859-1";
+
+body {
+	margin: 0;
+	background-color: var(--blanco);
+	height: 100vh;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	justify-items: center;
+}
+
+.registro {
+	grid-area: 2/2/3/3;
+	border-radius: var(--border-radius);
+	background-color: var(--amarillo);
+	min-height:250px;
+	max-height:250px;
+	min-width:350px;
+	/*colocamos el formulario al centro*/
+	display: flex;
+	align-items: center;
+	justify-content:space-evenly;
+	flex-direction: column;
+}
+
+.registro__titulo{
+	font-family: var(--titulos);
+	border-radius:var(--border-radius);
+	background-color:var(--gris);
+	line-height:47px;
+	width:80%;
+	height:50px;
+	text-align: center;
+	border:1px solid #333;
+	margin:0;
+}
+
+.registro__label {
+	font-family: var(--titulos);
+	font-weight:bold;
+	width:80%;
+	
+	display:flex;
+	justify-content: space-between;
+}
+
+.registro__aviso{
+	grid-column:2/3;
+	font-family: var(--parrafos);
+	background-color: var(--gris);
+	border-radius:var(--border-radius);
+	padding-left:15px;
+	padding-right:15px;
+	text-align:center;
+	color:grey;
+	width:80%;
+	align-self: end;
+}
+
+.registro__submit {
+	width: 150px;
+  height: 30px;
+
+  border: none;
+  border-radius: var(--border-radius);
+
+  font-family: var(--titulos);
+  text-transform: uppercase;
+  font-weight: bold;
+
+  background-color: var(--azul);
+  background: linear-gradient(to right, #141e30, #243b55);
+  color: var(--blanco);
+}
+
+.volver{
+		
+	line-height: 1.8em;
+    text-align: center;
+    text-decoration: none;
+    grid-row: 3/4;
+    grid-column: 2/3;
+    align-self: start;
+		
+	width: 150px;
+  height: 30px;
+
+  border: none;
+  border-radius: var(--border-radius);
+
+  font-family: var(--titulos);
+  text-transform: uppercase;
+  font-weight: bold;
+
+  background-color: var(--azul);
+  background: linear-gradient(to right, #141e30, #243b55);
+  color: var(--blanco);
+}
+
+.input-login{
+	font-family: var(--parrafos);
+}
+
+.input-password{
+	font-family: var(--parrafos);
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title th:text="${noticia.title}"></title>
+<link rel="icon" type="image/png" href="img/favicon.png" />
+<link rel="stylesheet" th:href="@{css/noticia.css}" />
+<link rel="stylesheet" th:href="@{css/encabezado.css}">
+<link rel="stylesheet" th:href="@{css/pie.css}">
+ <link href="https://fonts.googleapis.com/css2?family=Lora&family=Montserrat&family=Audiowide&display=swap" rel="stylesheet">
+</head>
+<body>
+	<button class="boton-navegacion">
+		<div></div>
+	</button>
+	<div th:replace ="fragmentos/encabezado :: navegacion"></div>
+	<div class="wrapper">
+       <header th:replace="fragmentos/encabezado :: header"></header>
+		<main>
+			<article class="noticia">
+				<img class="noticia__imagen" th:src="${noticia.imagePath}" alt="" />
+				<h1 class="noticia__titulo" th:text="${noticia.title}"></h1>
+				<h2 class="noticia__subtitulo" th:text="${noticia.subtitle}"></h2>
+				<div class="categorias-noticia">
+					<h3 class="categorias-noticia__categoria" th:each="categoria : ${noticia.categorias}" th:text="${categoria.categoryId.getNameCategory()}"></h3>
+				</div>
+				<h3 class="noticia__creado">
+					Creado por <span th:text="${noticia.userId.getUsername()}"></span>
+					el <span th:text="${noticia.createTime}"></span>
+				</h3>
+				<p class="noticia__texto" th:text="${noticia.content}"></p>
+				<a class="noticia__editar" sec:authorize="hasRole('ROLE_admin')" th:href="@{/editarNoticia(postId=${noticia.postId})}">editar noticia</a>
+			</article>
+			<div class="zona-comentarios">
+				<h1 class="zona-comentarios__aviso"
+					sec:authorize="not isAuthenticated()">Necesitas estar logeado
+					para comentar</h1>
+				<form sec:authorize="isAuthenticated()" class="nuevo-comentario"
+					th:object="${comentarioNuevo}"
+					th:action="@{/publicarComentario(postId=${noticia.postId})}"
+					method="POST">
+					<img class="nuevo-comentario__usuario"
+						th:src="${usuario.avatar_path}" alt="avatar de usuario" /> <input
+						class="nuevo-comentario__submit" type="submit" value="Comentar" />
+					<textarea class="nuevo-comentario__texto" rows="6" cols="40"
+						name="comentario" th:field="${comentarioNuevo.comment}">
+            </textarea>
+				</form>
+				<div class="comentarios">
+					<div th:each="comentario : ${comentarios}" class="comentario">
+						<img th:src="${comentario.userId.getAvatar_path()}"
+							alt="avatar de usuario" class="comentario__avatar" />
+						<p class="comentario__texto" th:text="${comentario.comment}"></p>
+						<p class="comentario__nombre-usuario"
+							th:text="${comentario.userId.getUsername()}"></p>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer th:replace="fragmentos/pie :: pie"></footer>
+	</div>
+</body>
+<script th:src="@{js/inicio.js}"></script>
+</html>

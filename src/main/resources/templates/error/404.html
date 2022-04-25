@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Error</title>
+<link rel="icon" type="image/png" href="img/favicon.png" />
+<link rel="stylesheet" th:href="@{css/error.css}" />
+<link rel="stylesheet" th:href="@{css/encabezado.css}">
+<link rel="stylesheet" th:href="@{css/pie.css}">
+<link
+	href="https://fonts.googleapis.com/css2?family=Lora&family=Montserrat&family=Audiowide&display=swap"
+	rel="stylesheet">
+</head>
+<body>
+	<div class="engranajes">
+		<img class="engranaje" alt="engranaje"
+			th:src="@{/icons/engranaje.svg}"> <img class="engranaje"
+			alt="engranaje" th:src="@{/icons/engranaje.svg}">
+	</div>
+	<h1 class="error">No existe el recurso que solicitas</h1>
+	<a class="volver" th:href="@{/}">volver</a>
+</body>
+<script src="js/inicio.js"></script>
+</html>

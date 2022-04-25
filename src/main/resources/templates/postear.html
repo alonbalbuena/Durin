@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crear Post</title>
+<link rel="icon" type="image/png" href="img/favicon.png" />
+<link rel="stylesheet" href="css/encabezado.css" />
+<link rel="stylesheet" href="css/pie.css" />
+<link rel="stylesheet" href="css/postear.css" />
+ <link href="https://fonts.googleapis.com/css2?family=Lora&family=Montserrat&family=Audiowide&display=swap" rel="stylesheet">
+</head>
+<body>
+	<button class="boton-navegacion">
+		<div></div>
+	</button>
+	  <div th:replace ="fragmentos/encabezado :: navegacion"></div>
+	
+	<div class="wrapper">
+		 <header th:replace="fragmentos/encabezado :: header"></header>
+		<main>
+			<form th:if="${nuevoPost.getContent() == null}" th:object="${nuevoPost}" class="nuevo-post"
+				th:action="@{/crearPost}" method="POST">
+				<div class="label-input">
+					<label class="label-input__titulo">titulo</label>
+					<textarea class="label-input__texto" th:field="*{title}" cols="60"
+						rows="3"></textarea>
+				</div>
+				<div class="label-input">
+					<label class="label-input__titulo">subtitulo</label>
+					<textarea class="label-input__texto" th:field="*{subtitle}"
+						cols="60" rows="3"></textarea>
+				</div>
+				<div class="label-input">
+					<label class="label-input__titulo">contenido</label>
+					<textarea class="label-input__texto" th:field="*{content}"
+						cols="60" rows="30"></textarea>
+				</div>
+				<div class="label-input">
+					<label class="label-input__titulo">imagen</label> <input type="url"
+						th:field="*{imagePath}" />
+				</div>
+				<div class="label-input">
+				<label class="label-input__titulo">categoria</label>
+				<select  name="categoria">
+					<option th:each="categoria: ${categorias}" th:value="${categoria.categoryId}" 
+						th:text="${categoria.nameCategory}"></option>
+				</select> 
+				</div>
+				<input  class="nuevo-post__submit" type="submit" value="Crear">
+			</form>
+			<form th:if="${nuevoPost.getContent()!= null}" th:object="${nuevoPost}" class="nuevo-post"
+				th:action="@{/actualizarNoticia}" method="POST">
+				<div class="label-input">
+					<label class="label-input__titulo">titulo</label>
+					<textarea class="label-input__texto" th:field="*{title}" cols="60"
+						rows="3"></textarea>
+				</div>
+				<div class="label-input">
+					<label class="label-input__titulo">subtitulo</label>
+					<textarea class="label-input__texto" th:field="*{subtitle}"
+						cols="60" rows="3"></textarea>
+				</div>
+				<div class="label-input">
+					<label class="label-input__titulo">contenido</label>
+					<textarea class="label-input__texto" th:field="*{content}"
+						cols="60" rows="30"></textarea>
+				</div>
+				<div class="label-input">
+					<label class="label-input__titulo">imagen</label> <input type="url"
+						th:field="*{imagePath}" />
+				</div>
+				<input type="text" hidden="true" th:field="*{postId}">
+				<input type="text" hidden="true" th:field="*{createTime}">
+				<input  class="nuevo-post__submit" type="submit" value="Actualizar">
+			</form>
+				
+		</main>
+		<footer th:replace="fragmentos/pie :: pie"></footer>
+	</div>
+</body>
+<script th:src="@{js/inicio.js}"></script>
+</html>

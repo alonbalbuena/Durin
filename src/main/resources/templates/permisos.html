@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Permisos</title>
+<link rel="icon" type="image/png" href="img/favicon.png" />
+<link rel="stylesheet" th:href="@{css/permisos.css}" />
+<link rel="stylesheet" th:href="@{css/encabezado.css}">
+<link rel="stylesheet" th:href="@{css/pie.css}">
+<link
+	href="https://fonts.googleapis.com/css2?family=Lora&family=Montserrat&family=Audiowide&display=swap"
+	rel="stylesheet">
+</head>
+<body>
+	<button class="boton-navegacion">
+		<div></div>
+	</button>
+	<div th:replace="fragmentos/encabezado :: navegacion"></div>
+	<div class="wrapper">
+		<header th:replace="fragmentos/encabezado :: header"></header>
+		<main>
+			<table class="lista-usuarios">
+				<tr class="lista-usuarios__encabezado">
+					<td>ID</td>
+					<td>nombre</td>
+					<td>rol</td>
+					<td>acciones</td>
+				</tr>
+				<tr th:each="usuario : ${usuarios}" class="lista-usuarios__usuario">
+
+					<td class="usuario-id" th:text="${usuario.idUsuario}"></td>
+					<td class="usuario-nombre" th:text="${usuario.Username}"></td>
+					<td class="usuario-rol" th:text="${usuario.rol.getNombreRol()}"></td>
+					<td class="usuario-accion">
+						<form th:action="@{/cambiarPermisos(id=${usuario.idUsuario})}"
+							method="POST">
+							<input type="submit" class="boton-permisos" value="Cambiar Rol" />
+						</form>
+					</td>
+
+				</tr>
+			</table>
+		</main>
+
+		<footer th:replace="fragmentos/pie :: pie"></footer>
+	</div>
+</body>
+<script th:src="@{js/inicio.js}"></script>
+</html>

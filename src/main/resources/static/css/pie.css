@@ -1,0 +1,35 @@
+footer {
+  display: grid;
+  grid-template-rows: 100px 200px;
+  grid-template-columns: 1fr;
+}
+
+.footer__sub {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform:capitalize;
+  
+  font-family: "Lora", serif;
+
+  background-color: var(--amarillo);
+}
+
+.footer__copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-transform:capitalize;
+	color:white;
+
+  background-color: var(--azul);
+
+  font-family: "Lora", serif;
+}
+
+.footer__copyright h1{  
+  margin-left:35px;
+   margin-right:35px;
+}

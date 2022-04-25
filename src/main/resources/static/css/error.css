@@ -1,0 +1,74 @@
+@charset "ISO-8859-1";
+body{
+	height: 100vh;
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+}
+
+.engranajes {
+	width:200px;
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+}
+
+.engranaje{
+	position:relative;
+	width:100px;
+	height:100px;
+	animation-duration: 4s;
+	animation-name:giro;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.engranaje:nth-child(1){
+	top:10px;
+	left:20px;
+}
+
+.engranaje:nth-child(2){
+	animation-direction:reverse;
+	left:74px;
+	bottom:12px;
+}
+
+.error{
+	z-index:1;
+	text-align: center;
+	font-family: var(--titulos);
+	background-color: var(--blanco);
+	padding:0;
+}
+
+.volver {
+	line-height: 1.8em;
+	text-align: center;
+	text-decoration: none;
+	grid-row: 3/4;
+	grid-column: 2/3;
+	width: 150px;
+	height: 30px;
+	border: none;
+	border-radius: var(--border-radius);
+	font-family: var(--titulos);
+	text-transform: uppercase;
+	font-weight: bold;
+	background-color: var(--azul);
+	background: linear-gradient(to right, #141e30, #243b55);
+	color: var(--blanco);
+}
+
+@keyframes giro{
+	0% {
+		transform:rotateZ(0deg);
+	}
+	50%{
+		transform:rotateZ(180deg);
+	}
+	100%{
+		transform:rotateZ(360deg);
+	}
+}

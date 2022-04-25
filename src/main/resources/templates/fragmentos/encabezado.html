@@ -1,0 +1,63 @@
+
+<div th:fragment="navegacion" class="navegacion">
+	<h1 class="navegacion__titulo-apartado">Login</h1>
+	<div class="navegacion__contenido-apartado">
+		<form sec:authorize="not isAuthenticated()" class="login"
+			th:action="@{/autentificacion}" method="POST">
+			<div class="login__label">
+				<label for="username">usuario</label> <input name="username"
+					class="input-login" type="text" />
+			</div>
+			<div class="login__label">
+				<label for="password">contraseña</label> <input name="password"
+					class="input-password" type="password" />
+			</div>
+			<input class="login__submit" type="submit" value="Entrar" /> <a
+				class="login__registro" th:href="@{/registro}">registro</a>
+		</form>
+		<div sec:authorize="isAuthenticated()" class="usuario">
+			<p class="usuario__bienvenida">
+				bienvenido <span th:if="${usuario}"
+					th:text="${usuario.getUsername()}"></span>
+			</p>
+			<a class="usuario__configuracion" th:href="@{/configurar}">configurar
+				cuenta</a>
+			<div sec:authorize="hasRole('ROLE_admin')"
+				class="usuario__notificaciones">
+				<a class="respuestas" th:href="@{/postear}"></a> <a class="mensajes"
+					th:href="@{/permisos}"></a>
+			</div>
+			<a th:href="@{/logout}" class="usuario__logout">logout</a>
+		</div>
+	</div>
+	<h1 class="navegacion__titulo-apartado">Busqueda</h1>
+	<div class="navegacion__contenido-apartado">
+		<form class="busqueda" th:action="@{/busqueda}" method="GET">
+			<input class="busqueda__search-box"
+				placeholder="¿Que quieres buscar?" type="text" name="q" /> <input
+				class="busqueda__submit" type="submit" value="Buscar" />
+		</form>
+	</div>
+	<h1 class="navegacion__titulo-apartado">Tema</h1>
+	<div class="navegacion__contenido-apartado">
+		<div class="boton-tema">
+            <input type="checkbox">
+            <span></span>
+        </div>
+	</div>
+</div>
+</div>
+
+<header th:fragment="header">
+	<div class="titulo">
+		<a th:href="@{/}" class="titulo__nombre">Durin</a>
+	</div>
+
+	<div class="categorias">
+		<a th:href="@{/categoria(categoriaId=1)}" class="categorias__dev">reviews</a>
+		<a th:href="@{/categoria(categoriaId=5)}"
+			class="categorias__novedades">desarrollo</a> <a
+			th:href="@{/categoria(categoriaId=3)}" class="categorias__reviews">actualidad</a>
+	</div>
+
+</header>

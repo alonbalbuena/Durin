@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title th:text="${busqueda}"></title>
+<link rel="icon" type="image/png" href="img/favicon.png" />
+<link rel="stylesheet" th:href="@{css/categoria.css}" />
+<link rel="stylesheet" th:href="@{css/encabezado.css}">
+<link rel="stylesheet" th:href="@{css/inicio.css}">
+<link rel="stylesheet" th:href="@{css/pie.css}">
+<link
+	href="https://fonts.googleapis.com/css2?family=Lora&family=Montserrat&family=Audiowide&display=swap"
+	rel="stylesheet">
+</head>
+<body>
+	<button class="boton-navegacion">
+		<div></div>
+	</button>
+	<div th:replace="fragmentos/encabezado :: navegacion"></div>
+	<div class="wrapper">
+		<header th:replace="fragmentos/encabezado :: header"></header>
+		<main>
+			<h1 class="nombre-categoria" th:text="${busqueda}"></h1>
+			<div class="noticias">
+				<article th:each="noticia: ${noticias}" class="noticia">
+					<h1 class="noticia__titulo" th:text="${noticia.title}"></h1>
+					<div class="noticia__contenido">
+						<img th:src="${noticia.imagePath}" alt="" />
+						<p th:text="${noticia.subtitle}"></p>
+					</div>
+					<a class="noticia__enlace"
+						th:href="@{/noticia(postId=${noticia.postId})}">leer más</a>
+				</article>
+			</div>
+		</main>
+
+		<footer th:replace="fragmentos/pie :: pie"></footer>
+	</div>
+</body>
+<script th:src="@{js/inicio.js}"></script>
+</html>
