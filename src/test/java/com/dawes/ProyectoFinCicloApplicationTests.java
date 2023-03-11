@@ -1,6 +1,6 @@
 package com.dawes;
 
-import javax.persistence.Persistence;
+import jakarta.persistence.Persistence;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;

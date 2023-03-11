@@ -16,12 +16,12 @@ import com.dawes.modelo.PostVO;
 public interface PostDAO extends CrudRepository<PostVO, Integer> {
 	PostVO findByTitle(String title);
 	
-	@Query("SELECT u FROM PostVO u WHERE u.postId=(SELECT max(u.postId) FROM u)")
+	@Query(value = "SELECT * FROM posts WHERE create_time = (SELECT MAX(create_time) FROM posts)", nativeQuery = true)
 	PostVO findLast();
 	
 	@Modifying
 	@Transactional
-	@Query("UPDATE PostVO u SET u.title = :newTitle, u.subtitle = :newSubtitle, u.content = :newContent, u.imagePath = :newImagePath WHERE u.postId = :id")
+	@Query(value = "UPDATE PostVO u SET u.title = :newTitle, u.subtitle = :newSubtitle, u.content = :newContent, u.imagePath = :newImagePath WHERE u.postId = :id", nativeQuery = true)
 	void actualizarPost(@Param("id") Integer id,@Param("newTitle") String newTitle,@Param("newSubtitle") String newSubtitle,@Param("newContent") String newContent,@Param("newImagePath") String newImagePath);
 
 	// igual que : SELECT u FROM PostVO u WHERE u.title like '%:query%'

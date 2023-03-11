@@ -12,11 +12,11 @@
   </head>
   <body>
   <button class="boton-navegacion"> <div></div> </button>
-  <div th:replace ="fragmentos/encabezado :: navegacion"></div>
+  <div th:replace ="~{fragmentos/encabezado :: navegacion}"></div>
     <div class="wrapper">
- <header th:replace="fragmentos/encabezado :: header"></header>
+ <header th:replace="~{fragmentos/encabezado :: header}"></header>
       <main>
-        <article class="noticia-destacada">
+        <article class="noticia-destacada" th:if="${ultimaNoticia} != null">
           <img
             class="noticia-destacada__imagen"
             th:src="${ultimaNoticia.imagePath}"
@@ -38,7 +38,7 @@
         </div>
       </main>
       
-      <footer th:replace="fragmentos/pie :: pie"></footer>
+      <footer th:replace="~{fragmentos/pie :: pie}"></footer>
     </div>
   </body>
   <script th:src="@{js/inicio.js}"></script>
